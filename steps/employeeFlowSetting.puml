@@ -1,0 +1,35 @@
+@startuml Employee Options
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+
+title Employee Options
+
+start
+
+if (Show employee members on the booking portal?) then (yes)
+:Employee members will be shown on the booking portal;
+else (no) 
+:Employee members will not be shown on the booking portal;
+endif
+
+if (Make selection of employee mandatory?) then (yes)
+:Customer will be required to choose an available employee in order to make an appointment;
+else (no) 
+:Customer will not be required to choose employee and will be assigned automatically;
+endif
+
+if (Make selection of employee mandatory on the admin side?) then (yes)
+:Admin will be required to choose an available employee in order to make an appointment from admin side;
+else (no) 
+:Admin will not be required to choose employee and will be assigned automatically;
+endif
+
+if (Do not skip employee selection if there is only one employee?) then (yes)
+:Customer will have to select employee even if there's only one employee;
+else (no) 
+: The step will be skipped if only one employee is there;
+endif
+
+end
+
+@enduml

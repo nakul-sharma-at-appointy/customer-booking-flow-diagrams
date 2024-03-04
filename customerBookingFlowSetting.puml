@@ -1,0 +1,27 @@
+@startuml customerBookingFlowSetting
+
+start
+
+:Customer booking flow;
+
+switch (Select Booking Sequence?)
+case ( SERVICE_EMPLOYEE_AVAILABILITY )
+  :Show Service -> Employee -> Availability Settings;
+case ( SERVICE_AVAILABILITY_EMPLOYEE ) 
+  :Show Service -> Availability -> Employee Settings;
+case ( AVAILABILITY_SERVICE_EMPLOYEE )
+  :Show Availability -> Service -> Employee Settings;
+endswitch
+
+:Resource Options;
+
+:CustomerOptions;
+
+:Cart Options;
+
+:Booking Confirmation;
+
+end
+
+
+@enduml

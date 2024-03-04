@@ -1,0 +1,82 @@
+@startuml Cart Flow
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+title Cart Options
+
+start
+
+if(Allow multiple items in cart) then(yes)
+:Multiple items will be allowed in cart at a time;
+
+else(no)
+:Multiple items won't be allowed in cart;
+
+endif
+
+if(Allow recurring bookings?) then (yes)
+:Recurring bookings will be allowed;
+
+else(no)
+:Recurring bookings won't be allowed;
+
+endif
+
+if(Show policies inline) then (yes)
+:Policies will be showed inline on cart page;
+
+else(no)
+:Policies won't be shown inline on cart page;
+
+endif
+
+if(Allow quantity booking) then (yes)
+:Customer will be allowed to book for more than one person in a single appointment;
+
+else(no)
+:Customer won't be allowed to book for multiple people in a single transaction;
+
+endif
+
+:Set Alias for quantity;
+
+:Set Maximum quantity per customer;
+
+if(Who needs to provide information at time of booking?) then(All customers)
+:Primary customer and secondary customers need to provide their information;
+
+else (primary)
+:Only primary customer will be required to fill their information;
+
+endif
+
+if(Intake form to be filled by all customers separately?) then (yes)
+:All customers will need to fill intake form;
+
+else (no)
+
+:all customers won't need to fill intake form;
+
+endif
+
+if(Intake form should be mandatory filled when an admin books an appointment) then (yes)
+:When admin is booking an appointment, they will have to fill the intake form;
+
+else (no)
+:Filling the Intake form won't be mandatory for the admin when booking an appointment;
+
+endif
+
+if(Do not allow overlapping booking for customers) then (yes)
+:Restrict customer to add/book multiple appointments with conflicting time-slots;
+
+else (no)
+:Customer won't be restricted to book multiple appointments with conflicting time;
+
+endif
+
+
+
+end
+
+
+@enduml

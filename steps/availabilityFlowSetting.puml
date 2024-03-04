@@ -1,0 +1,53 @@
+@startuml availabilityFlowSettings
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+title Availability Options
+
+start
+
+switch (Availability to be shown in time interval?)
+case (Automatically)
+  :System will automatically calculate best possible time slot;
+  note left
+For example, if there's a service for which multiple durations are there, 
+then slots will be shown based on minimum service time.
+  end note
+case (Fixed) 
+  :Based on the time interval that admin entered, system will show available time;
+case (Precision)
+  :Only the time slots admin entered will be available;
+endswitch
+
+if(Optimise my time?) then(yes)
+:Time will be optimised;
+
+else (no)
+:Time will not be optimised;
+endif
+
+:Look busy to customers;
+split
+:Strike out booked times;
+split again
+:Strike out blocked times;
+split again
+:Make calendar look busy;
+end split
+
+:Layout Settings;
+split
+:Calendar start day;
+split again
+:Calendar start date;
+end split
+
+if(Do not skip time selection if there is only one time slot?) then (yes)
+:Time selection step will not be skipped even if there's only one time slot available;
+
+else (no)
+:When only one time slot is available, time selection step will be skipped;
+endif
+
+end
+
+@enduml

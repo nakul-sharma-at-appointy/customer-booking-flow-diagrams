@@ -1,0 +1,41 @@
+@startuml Service Options
+
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+title Service Options
+
+start
+
+if (View services time on booking portal?) then (yes)
+  :Time of the services will be shown;
+else (no)
+  :Time of the service will not be shown;
+endif
+
+if (View services cost on booking portal?) then (yes)
+  :Cost of the services will be shown;
+else (no)
+  :Cost of the service will not be shown;
+endif
+
+if (Require customer to select categories first on the booking portal?) then (yes)
+  :Customer will be required to choose service categories before they can choose service on the booking portal;
+else (no)
+  :Customer will not be required to choose service categories;
+endif
+
+if (Do not skip service selection if there's only one service?) then (yes)
+  :Even if there's only one service, customer will have to choose that service before moving forward;
+else (no)
+  :The step will be skipped;
+endif
+
+if (Do not skip duration selection if there's only one duration?) then (yes)
+  :Even if there's only one duration, customer will have to choose that duration before moving forward;
+else (no)
+  :The step will be skipped;
+endif
+
+end
+
+@enduml

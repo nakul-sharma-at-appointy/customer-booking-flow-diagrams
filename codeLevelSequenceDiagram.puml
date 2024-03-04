@@ -1,0 +1,61 @@
+@startuml Code Flow Diagram
+
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+title Basic Code Flow Diagram
+
+start
+
+:Hook is Registed for AppointmentBookingFlowPage;
+
+:AppointmentBookingFlowPage;
+
+note right
+AppointmentBookingFlowPageQuery is called to get current booking flow settings
+end note
+
+if(Location available?) then (yes)
+
+switch (AppointmentBookingFlowMaster?)
+case ()
+  :Header;
+  :Allow Booking from Booking Portal Setting;
+case () 
+  :Sequence;
+  :Booking Sequence;
+case ()
+  :Steps;
+  split
+  :Service;
+  split again
+  :Employee;
+  split again
+  :Availability;
+  split again
+  :Resource;
+  split again
+  :Login;
+  split again
+  :Cart;
+  split again
+  :Confirmation;
+end split
+
+endswitch
+
+else (no)
+:Show Location Empty State;
+end
+
+endif
+
+:Save;
+note left
+Mutations in this step: UpsertAppointmentBookingFlowSettingMutation and UpsertServiceSettingMutation
+
+end note
+
+end
+
+
+@enduml

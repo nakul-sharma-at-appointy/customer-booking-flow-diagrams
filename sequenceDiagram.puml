@@ -1,0 +1,71 @@
+@startuml CustomerBookingFlowUI
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+
+title Customer Booking Flow UI
+
+actor Admin
+
+participant AdminUI
+
+participant Appointment
+
+Admin -> AdminUI: Admin Open Customer Booking Flow Settings
+activate AdminUI
+
+AdminUI -> Appointment: List current Booking Flow Settings using query `AppointmentBookingFlowPageQuery`
+activate Appointment
+
+Appointment --> AdminUI: List of all the current Booking Flow Settings 
+
+deactivate Appointment
+
+AdminUI --> Admin: Admin sees Current Booking Flow Settings
+
+deactivate AdminUI
+
+Admin -> AdminUI: Admin selects Enable Customer Portal Option
+activate AdminUI
+
+AdminUI --> Admin: Based on this, customer will be allowed to book services from customer portal
+deactivate AdminUI
+
+Admin -> AdminUI: Admin Selects Booking Sequence
+activate AdminUI
+
+AdminUI --> Admin: Based on this, booking order will be identified.
+note over AdminUI
+Options will be displayed in the same order
+We'll take Service -> Staff -> Availability in this case
+end note
+deactivate AdminUI
+
+Admin -> AdminUI: Customises service options
+activate AdminUI
+
+Admin -> AdminUI: Customises staff options
+
+Admin -> AdminUI: Customises Availability options
+
+note over AdminUI
+the following settings order is independent of booking order.
+end note
+
+Admin -> AdminUI: Customises Resource options
+
+Admin -> AdminUI: Customises Customer options
+
+Admin -> AdminUI: Customises Cart options
+
+Admin -> AdminUI: Clicks Save
+
+AdminUI -> Appointment: Saves the setting using mutation `UpsertAppointmentBookingFlowSettingMutation` 
+activate Appointment
+
+Appointment --> AdminUI: Success Message after Settings Saved.
+deactivate Appointment
+
+AdminUI --> Admin: Admin sees success message.
+deactivate AdminUI
+
+@enduml

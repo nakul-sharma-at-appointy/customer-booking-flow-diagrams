@@ -1,0 +1,26 @@
+@startuml customerFlowSetting
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+
+title Customer Options
+
+start
+
+if(Automatically detect customer's timezone?) then(yes)
+:Customer's timezone will be automatically deducted;
+
+else (no)
+:Customer's timezone will not be automatically deducted and utc will be shown;
+
+endif
+
+if(Skip information screen if the form is filled once?) then(yes)
+:Additional information screen is not visible if it's already filled;
+
+else (no)
+:Customer will have to fill Additional information;
+endif
+
+end
+
+@enduml

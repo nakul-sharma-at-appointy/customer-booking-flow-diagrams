@@ -1,0 +1,21 @@
+@startuml Resource Flow
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
+title Resource Options
+
+start
+
+switch(In what order should appointments be allocated to resource)
+case ()
+  :Most free resource (appointment-wise);
+case ()
+  :Most free resource (time-wise);
+case () 
+  :Most busy resource (appointment-wise);
+case () 
+  :Most busy resource (time-wise);
+endswitch
+
+end
+
+@enduml
