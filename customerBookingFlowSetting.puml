@@ -1,4 +1,6 @@
 @startuml customerBookingFlowSetting
+!include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
+
 
 start
 
