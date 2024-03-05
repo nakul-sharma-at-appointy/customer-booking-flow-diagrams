@@ -6,8 +6,6 @@ title Code Flow Diagram
 
 start
 
-:Hook is Registed for AppointmentBookingFlowPage;
-
 :AppointmentBookingFlowPage;
 
 note right
@@ -57,7 +55,7 @@ case ()
 
 endswitch
 
-elseif (No active location)
+(no)elseif (No Location Available)
 :Show Location Empty State;
 end
 
