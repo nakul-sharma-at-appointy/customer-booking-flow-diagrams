@@ -11,20 +11,32 @@ start
 :AppointmentBookingFlowPage;
 
 note right
-AppointmentBookingFlowPageQuery is called to get current booking flow settings
+Query: AppointmentBookingFlowPageQuery
 end note
 
-if(Location available?) then (yes)
+if(Any Location available?) then (yes)
 
-switch (AppointmentBookingFlowMaster?)
+:AppointmentBookingFlowMaster;
+
+:useAppointmentBookingFlow;
+
+-> Object returned from useAppointmentBookingFlow is being passed in the following components;
+
+note right
+It returns Data from the query stored in variable named value, an empty state and functions: save, loading and reset.
+end note
+
+switch()
+
 case ()
   :Header;
-  :Allow Booking from Booking Portal Setting;
+  :Allow booking from Booking Portal;
 case () 
   :Sequence;
-  :Booking Sequence;
+  :Select Booking Sequence;
 case ()
   :Steps;
+    ->Based on the booking sequence, Service, employee and availability order will be changed;
   split
   :Service;
   split again
@@ -34,7 +46,7 @@ case ()
   split again
   :Resource;
   split again
-  :Login;
+  :Customer;
   split again
   :Cart;
   split again
@@ -43,18 +55,33 @@ end split
 
 endswitch
 
-else (no)
+elseif (No active location)
 :Show Location Empty State;
+end
+
+else (error)
+:Error;
 end
 
 endif
 
+if(values changed?) then(yes)
+
+split
 :Save;
+
 note left
 Mutations in this step: UpsertAppointmentBookingFlowSettingMutation and UpsertServiceSettingMutation
-
 end note
 
+end
+
+split again
+:Reset;
+end
+end split
+
+else (no)
 end
 
 
