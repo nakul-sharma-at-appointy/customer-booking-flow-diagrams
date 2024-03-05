@@ -2,7 +2,7 @@
 
 !include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/materia/puml-theme-materia.puml
 
-title Basic Code Flow Diagram
+title Code Flow Diagram
 
 start
 
@@ -12,6 +12,7 @@ start
 
 note right
 Query: AppointmentBookingFlowPageQuery
+Skipped when there's no location
 end note
 
 if(Any Location available?) then (yes)
@@ -23,7 +24,7 @@ if(Any Location available?) then (yes)
 -> Object returned from useAppointmentBookingFlow is being passed in the following components;
 
 note right
-It returns Data from the query stored in variable named value, an empty state and functions: save, loading and reset.
+Returns Data from the query stored in variable named value, an empty state and functions: save, loading and reset.
 end note
 
 switch()
@@ -38,20 +39,21 @@ case ()
   :Steps;
     ->Based on the booking sequence, Service, employee and availability order will be changed;
   split
-  :Service;
+  :Service -> Employee -> Availability;
   split again
-  :Employee;
+  :Service -> Availability -> Employee;
   split again
-  :Availability;
-  split again
-  :Resource;
-  split again
-  :Customer;
-  split again
-  :Cart;
-  split again
-  :Confirmation;
-end split
+  :Availability -> Service -> Employee;
+
+  end split
+  ' split again
+  :Resource Options;
+  ' split again
+  :Customer Options;
+  ' split again
+  :Cart Options;
+  ' split again
+  :Booking Confirmation;
 
 endswitch
 
@@ -78,6 +80,10 @@ end
 
 split again
 :Reset;
+
+note right
+Values will be reset
+end note
 end
 end split
 
